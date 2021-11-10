@@ -1,9 +1,9 @@
-import { css } from '@emotion/css';
 import React, { useReducer } from 'react';
 import {
   MongoDBLogo,
   breakpoints,
   compassUIColors,
+  css,
   spacing,
 } from '@mongodb-js/compass-components';
 import ConnectForm from '@mongodb-js/connect-form';

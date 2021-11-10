@@ -36,7 +36,6 @@
     "@mongodb-js/compass-connections": "^0.1.0"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.5.0",
     "@mongodb-js/compass-components": "^0.6.0",
     "debug": "*",
     "hadron-react-buttons": "*",
@@ -49,7 +48,6 @@
     "react-tooltip": "^3.11.1"
   },
   "devDependencies": {
-    "@emotion/css": "^11.5.0",
     "@mongodb-js/compass-components": "^0.6.0",
     "@mongodb-js/eslint-config-compass": "^0.3.0",
     "@mongodb-js/mocha-config-compass": "^0.4.0",

@@ -1,4 +1,3 @@
-import { css } from '@emotion/css';
 import React, { useEffect, useRef, useReducer } from 'react';
 import {
   IconButton,
@@ -7,6 +6,7 @@ import {
   MenuItem,
   Toast,
   ToastVariant,
+  css,
   spacing,
 } from '@mongodb-js/compass-components';
 
@@ -20,9 +20,9 @@ const dropdownButtonStyles = css({
 });
 
 const toastStyles = css({
-  button: {
-    position: 'absolute',
-  },
+  // button: {
+  //   position: 'absolute',
+  // },
 });
 
 const TOAST_TIMEOUT_MS = 5000; // 5 seconds.

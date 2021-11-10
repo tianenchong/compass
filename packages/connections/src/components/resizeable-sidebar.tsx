@@ -1,5 +1,4 @@
-import { css } from '@emotion/css';
-import { ResizeHandle, ResizeDirection } from '@mongodb-js/compass-components';
+import { ResizeHandle, ResizeDirection, css } from '@mongodb-js/compass-components';
 import React, { useState } from 'react';
 import { ConnectionInfo } from 'mongodb-data-service';
 

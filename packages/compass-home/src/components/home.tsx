@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@mongodb-js/compass-components';
 import React, { useCallback, useEffect, useReducer } from 'react';
 import {
   DataService,

@@ -1,4 +1,3 @@
-import { css } from '@emotion/css';
 import React, { useState } from 'react';
 import { ConnectionInfo } from 'mongodb-data-service';
 import {
@@ -7,6 +6,7 @@ import {
   Card,
   Description,
   H3,
+  css,
   spacing,
   uiColors,
 } from '@mongodb-js/compass-components';

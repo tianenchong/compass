@@ -17,6 +17,7 @@ export {
 } from '@leafygreen-ui/button';
 export { default as Card } from '@leafygreen-ui/card';
 export { default as Checkbox } from '@leafygreen-ui/checkbox';
+export { css, cx } from '@leafygreen-ui/emotion';
 export { default as Icon } from '@leafygreen-ui/icon';
 export { default as IconButton } from '@leafygreen-ui/icon-button';
 export { default as LeafyGreenProvider } from '@leafygreen-ui/leafygreen-provider';

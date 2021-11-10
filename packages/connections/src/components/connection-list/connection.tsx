@@ -1,8 +1,9 @@
-import { css, cx } from '@emotion/css';
 import React from 'react';
 import {
   Subtitle,
   Description,
+  css,
+  cx,
   spacing,
   uiColors,
 } from '@mongodb-js/compass-components';

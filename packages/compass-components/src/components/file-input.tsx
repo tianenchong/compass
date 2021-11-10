@@ -1,8 +1,8 @@
 import React from 'react';
 import path from 'path';
-import { css, cx } from '@emotion/css';
-
-import { Button, Icon } from '..';
+import { css, cx } from '@leafygreen-ui/emotion';
+import Button from '@leafygreen-ui/button';
+import Icon from '@leafygreen-ui/icon';
 
 const formItemHorizontalStyles = css`
   margin: 15px auto 15px;

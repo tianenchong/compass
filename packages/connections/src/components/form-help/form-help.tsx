@@ -1,4 +1,3 @@
-import { css, cx } from '@emotion/css';
 import React from 'react';
 import {
   Button,
@@ -7,6 +6,8 @@ import {
   Subtitle,
   Description,
   Link,
+  css,
+  cx,
   spacing,
   uiColors,
 } from '@mongodb-js/compass-components';

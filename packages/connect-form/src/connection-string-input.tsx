@@ -1,10 +1,11 @@
-import { css, cx } from '@emotion/css';
 import React, { ChangeEvent, Fragment, useRef, useReducer } from 'react';
 import {
   Icon,
   IconButton,
   Label,
   TextArea,
+  css,
+  cx,
   spacing,
 } from '@mongodb-js/compass-components';
 import ConfirmEditConnectionString from './confirm-edit-connection-string';
