@@ -17,6 +17,7 @@
     "eslint": "^7.25.0"
   },
   "dependencies": {
+    "@emotion/eslint-plugin": "^11.5.0",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "eslint-config-prettier": "^8.3.0",

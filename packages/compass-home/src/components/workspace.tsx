@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React from 'react';
 
 import WorkspaceContent from './workspace-content';
@@ -58,9 +58,9 @@ export default function Workspace({
   const FindInPage = findInPageRole ? findInPageRole[0].component : null;
 
   return (
-    <div data-test-id="home-view" className={homeViewStyles}>
-      <div className={homePageStyles}>
-        <div className={homePageContentStyles}>
+    <div data-test-id="home-view" css={homeViewStyles}>
+      <div css={homePageStyles}>
+        <div css={homePageContentStyles}>
           <WorkspaceContent
             namespace={namespace}
             instanceLoadingStatus={instanceLoadingStatus}

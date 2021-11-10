@@ -40,14 +40,14 @@
     "check": "npm run lint && npm run depcheck",
     "check-ci": "npm run check",
     "test": "mocha",
-    "test-electron": "xvfb-maybe electron-mocha --no-sandbox",
+    "test-electron": "xvfb-maybe electron-mocha --no-sandbox --renderer=true --interactive",
     "test-cov": "nyc -x \"**/*.spec.*\" npm run test",
     "test-watch": "npm run test -- --watch",
     "test-ci": "npm run test-electron && npm run test-cov",
     "reformat": "npm run prettier -- --write ."
   },
   "peerDependencies": {
-    "@emotion/css": "^11.5.0",
+    "@emotion/react": "^11.5.0",
     "@mongodb-js/compass-components": "^0.6.0",
     "react": "*",
     "react-dom": "*"
@@ -58,7 +58,7 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "@emotion/css": "^11.5.0",
+    "@emotion/react": "^11.5.0",
     "@mongodb-js/compass-components": "^0.6.0",
     "@mongodb-js/eslint-config-compass": "^0.3.0",
     "@mongodb-js/mocha-config-compass": "^0.4.0",
@@ -73,6 +73,7 @@
     "@types/sinon-chai": "^3.2.5",
     "chai": "^4.3.4",
     "depcheck": "^1.4.1",
+    "electron-mocha": "^10.1.0",
     "eslint": "^7.25.0",
     "gen-esm-wrapper": "^1.1.0",
     "mocha": "^8.4.0",

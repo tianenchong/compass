@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React, { useState } from 'react';
 import { ConnectionInfo } from 'mongodb-data-service';
 import {
@@ -24,13 +24,13 @@ const formContainerStyles = css({
   display: 'inline-block',
 });
 
-const formCardStyles = css({
+const formCardStyles = css`
   margin: 0,
   padding: spacing[2],
   height: 'fit-content',
   width: '100%',
   position: 'relative',
-});
+`;
 
 const descriptionStyles = css({
   marginTop: spacing[2],
@@ -58,11 +58,11 @@ function ConnectForm({
   );
 
   return (
-    <div className={formContainerStyles}>
-      <Card className={formCardStyles}>
-        <div className={formContentContainerStyles}>
+    <div css={formContainerStyles}>
+      <Card css={formCardStyles}>
+        <div css={formContentContainerStyles}>
           <H3>New Connection</H3>
-          <Description className={descriptionStyles}>
+          <Description css={descriptionStyles}>
             Connect to a MongoDB deployment
           </Description>
           <ConnectionStringInput
@@ -70,7 +70,7 @@ function ConnectForm({
             setConnectionString={setConnectionString}
           />
         </div>
-        <div className={formActionStyles}>
+        <div css={formActionStyles}>
           <Button
             variant={ButtonVariant.Primary}
             onClick={() =>

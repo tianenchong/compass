@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React, { useReducer } from 'react';
 import {
   MongoDBLogo,
@@ -186,15 +186,15 @@ function Connections(): React.ReactElement {
   };
 
   return (
-    <div className={connectStyles}>
+    <div css={connectStyles}>
       <ResizableSidebar
         activeConnectionId={activeConnectionId}
         connections={connections}
         setActiveConnectionId={updateActiveConnection}
       />
-      <div className={connectItemContainerStyles}>
-        <MongoDBLogo className={logoStyles} color={'black'} />
-        <div className={formContainerStyles}>
+      <div css={connectItemContainerStyles}>
+        <MongoDBLogo css={logoStyles} color={'black'} />
+        <div css={formContainerStyles}>
           <ConnectForm
             onConnectClicked={(connectionInfo) =>
               alert(

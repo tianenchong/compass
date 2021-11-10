@@ -16,6 +16,7 @@ const reactConfigurations = [
   'plugin:react/recommended',
   'plugin:react-hooks/recommended',
   'plugin:jsx-a11y/recommended',
+  'plugin:@emotion'
 ];
 
 const testConfigurations = ['plugin:mocha/recommended'];
@@ -25,7 +26,7 @@ const testRules = {
 };
 
 module.exports = {
-  plugins: ['@typescript-eslint', 'jsx-a11y', 'mocha', 'react'],
+  plugins: ['@typescript-eslint', 'jsx-a11y', 'mocha', 'react', 'react-hooks', '@emotion'],
   env: { node: true },
   overrides: [
     {

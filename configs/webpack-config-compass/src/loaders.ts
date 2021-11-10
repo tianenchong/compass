@@ -34,6 +34,7 @@ export const javascriptLoader = (args: ConfigArgs) => ({
         ],
         require.resolve('@babel/preset-react'),
         require.resolve('@babel/preset-typescript'),
+        require.resolve('@emotion/babel-preset-css-prop')
       ],
       plugins: [
         [
@@ -50,6 +51,7 @@ export const javascriptLoader = (args: ConfigArgs) => ({
           // now)
           args.hot &&
           require.resolve('react-refresh/babel'),
+        require.resolve('@emotion/babel-plugin')
       ].filter(Boolean),
     },
   },

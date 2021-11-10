@@ -1,4 +1,4 @@
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import React from 'react';
 import {
   Subtitle,
@@ -153,48 +153,48 @@ function Connection({
     : getConnectionTitle(connectionInfo);
 
   return (
-    <div className={connectionButtonContainerStyles}>
+    <div css={connectionButtonContainerStyles}>
       <button
-        className={cx(
+        css={[
           connectionButtonStyles,
           isActive ? activeConnectionStyles : null
-        )}
+        ]}
         onClick={onClick}
       >
-        <div className={connectionTitleContainerStyles}>
+        <div css={connectionTitleContainerStyles}>
           {!!(connectionInfo.favorite && connectionInfo.favorite.color) && (
             <div
               data-testid="connection-favorite-indicator"
-              className={cx(
+              css={[
                 connectionFavoriteStyles,
                 css({
                   backgroundColor: connectionInfo.favorite.color,
                 })
-              )}
+              ]}
             />
           )}
           <Subtitle
-            className={cx(
+            css={[
               connectionTitleStyles,
               connectionInfo.favorite && connectionInfo.favorite.color
                 ? css({
                     color: connectionInfo.favorite.color,
                   })
                 : null
-            )}
+            ]}
             title={connectionTitle}
           >
             {connectionTitle}
           </Subtitle>
         </div>
         {connectionInfo.lastUsed && (
-          <Description className={connectionDescriptionStyles}>
+          <Description css={connectionDescriptionStyles}>
             {connectionInfo.lastUsed.toLocaleString('default', dateConfig)}
           </Description>
         )}
       </button>
       <div
-        className={
+        css={
           isActive ? connectionMenuVisibleStyles : connectionMenuHiddenStyles
         }
       >

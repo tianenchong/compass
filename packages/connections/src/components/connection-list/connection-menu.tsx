@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React, { useEffect, useRef, useReducer } from 'react';
 import {
   IconButton,
@@ -122,7 +122,7 @@ function ConnectionMenu({
   return (
     <>
       <Toast
-        className={toastStyles}
+        css={toastStyles}
         variant={toastVariant}
         title={toastVariant === ToastVariant.Success ? 'Success!' : 'Error'}
         body={
@@ -138,7 +138,7 @@ function ConnectionMenu({
         justify="start"
         trigger={
           <IconButton
-            className={dropdownButtonStyles}
+            css={dropdownButtonStyles}
             aria-label="Connection Options Menu"
           >
             <Icon glyph="VerticalEllipsis" />

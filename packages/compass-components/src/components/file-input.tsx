@@ -1,6 +1,6 @@
-import React from 'react';
 import path from 'path';
-import { css, cx } from '@emotion/css';
+import { css } from '@leafygreen-ui/emotion';
+import React, { ReactElement, useCallback, useMemo, useRef } from 'react';
 
 import { Button, Icon } from '..';
 
@@ -98,10 +98,10 @@ function FileInput({
   variant?: Variant;
   link?: string;
   values?: string[];
-}): React.ReactElement {
-  const inputRef = React.useRef<HTMLInputElement>(null);
+}): ReactElement {
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const buttonText = React.useMemo(() => {
+  const buttonText = useMemo(() => {
     if (Array.isArray(values) && values.length > 0) {
       return values.map((file) => path.basename(file)).join(', ');
     }
@@ -109,7 +109,7 @@ function FileInput({
     return multi ? 'Select files...' : 'Select a file...';
   }, [values, multi]);
 
-  const onFilesChanged = React.useCallback(
+  const onFilesChanged = useCallback(
     (evt) => {
       const fileList = Array.from(evt.currentTarget.files as FileList);
       const files = fileList.map((file) => {
@@ -122,18 +122,18 @@ function FileInput({
 
   return (
     <div
-      className={cx(
-        { [formItemHorizontalStyles]: variant === Variant.Horizontal },
-        { [formItemVerticalStyles]: variant === Variant.Vertical },
-        { [formItemErrorStyles]: error }
-      )}
+      css={[
+        variant === Variant.Horizontal ? formItemHorizontalStyles : null ,
+        variant === Variant.Vertical ? formItemVerticalStyles : null ,
+        error ? formItemErrorStyles : null 
+      ]}
     >
       <label
         htmlFor={id}
-        className={cx(
-          { [labelHorizontalStyles]: variant === Variant.Horizontal },
-          { [labelErrorStyles]: error }
-        )}
+        css={[
+          variant === Variant.Horizontal ? labelHorizontalStyles : null ,
+          error ? labelErrorStyles : null
+        ]}
       >
         <span>{label}</span>
         {link && (
@@ -141,7 +141,7 @@ function FileInput({
             href={link}
             target="_blank"
             rel="noreferrer"
-            className={labelIconStyles}
+            css={labelIconStyles}
             data-testid="file-input-link"
           >
             
@@ -160,7 +160,7 @@ function FileInput({
       <Button
         id={id}
         data-testid="file-input-button"
-        className={cx({ [buttonStyles]: true }, { [buttonErrorStyles]: error })}
+        css={css([buttonStyles, error ? buttonErrorStyles : null ])}
         onClick={() => {
           if (inputRef.current) {
             inputRef.current.click();

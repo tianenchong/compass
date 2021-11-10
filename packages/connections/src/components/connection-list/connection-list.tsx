@@ -1,4 +1,4 @@
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { spacing } from '@mongodb-js/compass-components';
 import React, { Fragment } from 'react';
 import {
@@ -73,9 +73,9 @@ function ConnectionList({
 }): React.ReactElement {
   return (
     <Fragment>
-      <div className={newConnectionButtonContainerStyles}>
+      <div css={newConnectionButtonContainerStyles}>
         <Button
-          className={newConnectionButtonStyles}
+          css={newConnectionButtonStyles}
           darkMode
           onClick={() => setActiveConnectionId()}
           leftGlyph={<Icon glyph="Plus" />}
@@ -83,16 +83,16 @@ function ConnectionList({
           New Connection
         </Button>
       </div>
-      <div className={connectionListSectionStyles}>
-        <div className={sectionHeaderStyles}>
+      <div css={connectionListSectionStyles}>
+        <div css={sectionHeaderStyles}>
           <Icon
-            className={sectionHeaderIconStyles}
+            css={sectionHeaderIconStyles}
             glyph="Favorite"
             size={sectionHeaderIconSize}
           />
-          <Subtitle className={sectionHeaderTitleStyles}>Favorites</Subtitle>
+          <Subtitle css={sectionHeaderTitleStyles}>Favorites</Subtitle>
         </div>
-        <ul className={connectionListStyles}>
+        <ul css={connectionListStyles}>
           {connections
             .filter((connectionInfo) => !!connectionInfo.favorite)
             .map((connectionInfo, index) => (
@@ -111,12 +111,12 @@ function ConnectionList({
               </li>
             ))}
         </ul>
-        <div className={sectionHeaderStyles}>
+        <div css={sectionHeaderStyles}>
           {/* There is no leafygreen replacement for this icon */}
-          <i className={cx('fa fa-fw fa-history', sectionHeaderIconStyles)} />
-          <Subtitle className={sectionHeaderTitleStyles}>Recents</Subtitle>
+          <i className="fa fa-fw fa-history" css={sectionHeaderIconStyles} />
+          <Subtitle css={sectionHeaderTitleStyles}>Recents</Subtitle>
         </div>
-        <ul className={connectionListStyles}>
+        <ul css={connectionListStyles}>
           {connections
             .filter((connectionInfo) => !connectionInfo.favorite)
             .map((connectionInfo, index) => (

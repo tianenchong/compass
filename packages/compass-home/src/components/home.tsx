@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import React, { useCallback, useEffect, useReducer } from 'react';
 import {
   DataService,
@@ -265,8 +265,8 @@ function Home({ appName }: { appName: string }): React.ReactElement | null {
 
   if (showNewConnectForm) {
     return (
-      <div className={homeViewStyles} data-test-id="home-view">
-        <div className={homePageStyles}>
+      <div css={homeViewStyles} data-test-id="home-view">
+        <div css={homePageStyles}>
           <Connections />
         </div>
       </div>
@@ -279,8 +279,8 @@ function Home({ appName }: { appName: string }): React.ReactElement | null {
 
   const Connect = connectRole[0].component;
   return (
-    <div className={homeViewStyles} data-test-id="home-view">
-      <div className={homePageStyles}>
+    <div css={homeViewStyles} data-test-id="home-view">
+      <div css={homePageStyles}>
         <Connect />
       </div>
     </div>
