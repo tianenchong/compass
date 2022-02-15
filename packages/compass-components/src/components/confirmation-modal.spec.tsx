@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import { expect } from 'chai';
 
-import ConfirmationModal from './confirmation-modal';
+import { ConfirmationModal } from './confirmation-modal';
 
 function renderModal() {
   return render(

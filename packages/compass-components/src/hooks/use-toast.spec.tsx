@@ -2,8 +2,11 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { expect } from 'chai';
 import React from 'react';
 import sinon from 'sinon';
+import {
+  Variant as ToastVariant,
+} from '@leafygreen-ui/toast';
 
-import { ToastArea, ToastVariant, useToast } from '..';
+import { ToastArea, useToast } from './use-toast';
 
 const OpenToastButton = ({
   namespace,

@@ -18,7 +18,7 @@ interface Field {
     'proxyHost' | 'proxyPort' | 'proxyUsername' | 'proxyPassword'
   >;
   label: string;
-  type: string;
+  type: 'text' | 'number' | 'password';
   optional: boolean;
   value: string;
   errorMessage?: string;

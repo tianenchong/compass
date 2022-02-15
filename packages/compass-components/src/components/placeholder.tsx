@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
 import type { CSSProperties } from 'react';
 import React, { useMemo } from 'react';
-import { css, cx, keyframes } from '../';
-import { uiColors, spacing } from '../';
+// import { uiColors, spacing, css, cx, keyframes } from '../';
+
+import { css, cx, keyframes } from '@leafygreen-ui/emotion';
+import { uiColors } from '@leafygreen-ui/palette';
+import { spacing } from '@leafygreen-ui/tokens';
+
+// import { uiColors, spacing, css, cx, keyframes } from '../';
+
 
 // Ratio of showing a highlight passing through the placeholder to background color
 const scale = 4;

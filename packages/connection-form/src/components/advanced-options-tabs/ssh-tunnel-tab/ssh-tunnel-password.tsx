@@ -35,13 +35,21 @@ function SshTunnelPassword({
     [updateConnectionFormField]
   );
 
-  const fields = [
+  const fields: {
+    name: string;
+    label: string;
+    type: 'text' | 'number' | 'password';
+    optional: boolean;
+    value: string | '';
+    errorMessage: string | undefined;
+    state: 'error' | 'none';
+  }[] = [
     {
       name: 'host',
       label: 'SSH Hostname',
       type: 'text',
       optional: false,
-      value: sshTunnelOptions?.host,
+      value: sshTunnelOptions?.host || '',
       errorMessage: errorMessageByFieldName(errors, 'sshHostname'),
       state: fieldNameHasError(errors, 'sshHostname') ? 'error' : 'none',
     },
@@ -50,7 +58,7 @@ function SshTunnelPassword({
       label: 'SSH Port',
       type: 'number',
       optional: false,
-      value: sshTunnelOptions?.port?.toString(),
+      value: sshTunnelOptions?.port?.toString() || '',
       errorMessage: undefined,
       state: 'none',
     },
@@ -59,7 +67,7 @@ function SshTunnelPassword({
       label: 'SSH Username',
       type: 'text',
       optional: false,
-      value: sshTunnelOptions?.username,
+      value: sshTunnelOptions?.username || '',
       errorMessage: errorMessageByFieldName(errors, 'sshUsername'),
       state: fieldNameHasError(errors, 'sshUsername') ? 'error' : 'none',
     },
@@ -68,7 +76,7 @@ function SshTunnelPassword({
       label: 'SSH Password',
       type: 'password',
       optional: true,
-      value: sshTunnelOptions?.password,
+      value: sshTunnelOptions?.password || '',
       errorMessage: errorMessageByFieldName(errors, 'sshPassword'),
       state: fieldNameHasError(errors, 'sshPassword') ? 'error' : 'none',
     },
@@ -92,7 +100,7 @@ function SshTunnelPassword({
               optional={optional}
               value={value}
               errorMessage={errorMessage}
-              state={state as 'error' | 'none'}
+              state={state}
               spellCheck={false}
             />
           </FormFieldContainer>

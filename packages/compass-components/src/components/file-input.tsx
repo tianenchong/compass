@@ -3,8 +3,18 @@ import path from 'path';
 import { css, cx } from '@leafygreen-ui/emotion';
 import { uiColors } from '@leafygreen-ui/palette';
 import { spacing } from '@leafygreen-ui/tokens';
+import Button from '@leafygreen-ui/button';
+import Icon from '@leafygreen-ui/icon';
+import IconButton from '@leafygreen-ui/icon-button';
+import {
+  Description,
+  Label,
+  Link,
+} from '@leafygreen-ui/typography';
 
-import { Button, Icon, IconButton, Label, Link, Description } from '..';
+// import { Button, Icon, IconButton, Label, Link, Description } from '..';
+
+// import { Button, Icon, IconButton, Label, Link, Description } from '..';
 
 const { base: redBaseColor } = uiColors.red;
 

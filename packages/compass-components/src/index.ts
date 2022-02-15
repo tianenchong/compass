@@ -1,23 +1,72 @@
-export {
-  default as emotion,
-  flush,
-  hydrate,
-  cx,
-  merge,
-  getRegisteredStyles,
-  injectGlobal,
-  keyframes,
-  css,
-  sheet,
-  cache,
-} from '@leafygreen-ui/emotion';
+
+// Custom components.
 import CancelLoader from './components/cancel-loader';
-import ConfirmationModal from './components/confirmation-modal';
 import FileInput from './components/file-input';
 import SpinLoader from './components/spin-loader';
 import { ResizeHandle, ResizeDirection } from './components/resize-handle';
 import Accordion from './components/accordion';
-export { FavoriteIcon } from './components/icons/favorite-icon';
+import { FavoriteIcon } from './components/icons/favorite-icon';
+import { ConfirmationModal } from './components/confirmation-modal';
+import { Tooltip } from './components/tooltip';
+import { Toggle } from './components/toggle';
+
+
+export {
+  ContentWithFallback,
+  FadeInPlaceholder,
+} from './components/content-with-fallback';
+export { InlineDefinition } from './components/inline-definition';
+export { ErrorBoundary } from './components/error-boundary';
+export { Placeholder } from './components/placeholder';
+export { VirtualGrid } from './components/virtual-grid';
+
+export {
+  Accordion,
+  CancelLoader,
+  ConfirmationModal,
+  FavoriteIcon,
+  FileInput,
+  SpinLoader,
+  ResizeHandle,
+  ResizeDirection,
+  Toggle,
+  Tooltip,
+};
+
+// Custom hooks.
+
+export { useToast, ToastArea } from './hooks/use-toast';
+
+export { useDOMRect } from './hooks/use-dom-rect';
+
+export { mergeProps } from './utils/merge-props';
+export { useFocusRing } from './hooks/use-focus-ring';
+export { useDefaultAction } from './hooks/use-default-action';
+export { useSortControls, useSortedItems } from './hooks/use-sort';
+
+
+
+export {
+  useFocusState,
+  useHoverState,
+  FocusState,
+} from './hooks/use-focus-hover';
+export { useTheme, Theme, ThemeProvider } from './hooks/use-theme';
+
+// ____ end hooks
+
+// Custom constants.
+
+export * as compassUIColors from './compass-ui-colors';
+
+
+// ____ end constants
+
+
+
+
+// Leafygreen wrappers.
+
 export {
   default as Badge,
   Variant as BadgeVariant,
@@ -33,8 +82,6 @@ export {
 } from '@leafygreen-ui/button';
 export { default as Card } from '@leafygreen-ui/card';
 export { default as Checkbox } from '@leafygreen-ui/checkbox';
-export { default as Icon } from '@leafygreen-ui/icon';
-export { default as IconButton } from '@leafygreen-ui/icon-button';
 export { default as LeafyGreenProvider } from '@leafygreen-ui/leafygreen-provider';
 export {
   AtlasLogoMark,
@@ -42,9 +89,9 @@ export {
   MongoDBLogo,
 } from '@leafygreen-ui/logo';
 export { Menu, MenuSeparator, MenuItem } from '@leafygreen-ui/menu';
-export { default as Modal } from '@leafygreen-ui/modal';
 export { uiColors } from '@leafygreen-ui/palette';
-export * as compassUIColors from './compass-ui-colors';
+
+
 export { default as Portal } from '@leafygreen-ui/portal';
 export { RadioBox, RadioBoxGroup } from '@leafygreen-ui/radio-box-group';
 export { Radio, RadioGroup } from '@leafygreen-ui/radio-group';
@@ -62,12 +109,7 @@ export {
   Variant as ToastVariant,
 } from '@leafygreen-ui/toast';
 
-export { useToast, ToastArea } from './hooks/use-toast';
-
-export { Toggle } from './components/toggle';
-
 export { breakpoints, spacing } from '@leafygreen-ui/tokens';
-export { Tooltip } from './components/tooltip';
 export {
   H1,
   H2,
@@ -82,39 +124,34 @@ export {
   Label,
   Description,
 } from '@leafygreen-ui/typography';
-export {
-  Accordion,
-  CancelLoader,
-  ConfirmationModal,
-  FileInput,
-  SpinLoader,
-  ResizeHandle,
-  ResizeDirection,
-};
-export {
-  useFocusState,
-  useHoverState,
-  FocusState,
-} from './hooks/use-focus-hover';
-export { useTheme, Theme, ThemeProvider } from './hooks/use-theme';
-export {
-  ContentWithFallback,
-  FadeInPlaceholder,
-} from './components/content-with-fallback';
-export { InlineDefinition } from './components/inline-definition';
+
 import type { glyphs } from '@leafygreen-ui/icon';
 export type IconGlyph = Extract<keyof typeof glyphs, string>;
 export {
   SegmentedControl,
   SegmentedControlOption,
 } from '@leafygreen-ui/segmented-control';
-export { ErrorBoundary } from './components/error-boundary';
-export { Placeholder } from './components/placeholder';
-export { useDOMRect } from './hooks/use-dom-rect';
+
 export { Table, TableHeader, Row, Cell } from '@leafygreen-ui/table';
 export { default as FormFooter } from '@leafygreen-ui/form-footer';
-export { VirtualGrid } from './components/virtual-grid';
-export { mergeProps } from './utils/merge-props';
-export { useFocusRing } from './hooks/use-focus-ring';
-export { useDefaultAction } from './hooks/use-default-action';
-export { useSortControls, useSortedItems } from './hooks/use-sort';
+
+export {
+  default as emotion,
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  cache,
+} from '@leafygreen-ui/emotion';
+export { default as Modal } from '@leafygreen-ui/modal';
+
+export { default as Icon } from '@leafygreen-ui/icon';
+export { default as IconButton } from '@leafygreen-ui/icon-button';
+
+
+// ______ end Leafygreen wrappers

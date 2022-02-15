@@ -3,7 +3,7 @@ import LeafyGreenConfirmationModal from '@leafygreen-ui/confirmation-modal';
 import { createLoggerAndTelemetry } from '@mongodb-js/compass-logging';
 const { track } = createLoggerAndTelemetry('COMPASS-UI');
 
-function ConfirmationModal(
+export function ConfirmationModal(
   props: React.ComponentProps<typeof LeafyGreenConfirmationModal> & {
     trackingId?: string;
   }
@@ -13,5 +13,3 @@ function ConfirmationModal(
   }
   return <LeafyGreenConfirmationModal {...props} />;
 }
-
-export default ConfirmationModal;
