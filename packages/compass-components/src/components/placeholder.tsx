@@ -9,7 +9,6 @@ import { spacing } from '@leafygreen-ui/tokens';
 
 // import { uiColors, spacing, css, cx, keyframes } from '../';
 
-
 // Ratio of showing a highlight passing through the placeholder to background color
 const scale = 4;
 

@@ -52,7 +52,6 @@
     "react-dom": "^16.14.0"
   },
   "dependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
     "lodash": "^4.17.21",
     "mongodb-build-info": "^1.4.0",
     "mongodb-connection-string-url": "^2.4.2",
@@ -66,6 +65,7 @@
     "@mongodb-js/prettier-config-compass": "^0.4.0",
     "@mongodb-js/tsconfig-compass": "^0.5.0",
     "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/chai": "^4.2.21",
     "@types/chai-dom": "^0.0.10",
