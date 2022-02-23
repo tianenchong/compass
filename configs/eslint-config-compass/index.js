@@ -58,7 +58,17 @@ const typescriptParserOptions = {
 };
 
 module.exports = {
-  plugins: ['@typescript-eslint', 'jsx-a11y', 'mocha', 'react', 'react-hooks'],
+  plugins: [
+    '@typescript-eslint',
+    'jsx-a11y',
+    'mocha',
+    'react',
+    'react-hooks',
+    '@mongodb-js/compass',
+  ],
+  rules: {
+    '@mongodb-js/compass/no-leafygreen-outside-compass-components': 'error',
+  },
   env: { node: true },
   overrides: [
     {
