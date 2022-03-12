@@ -7,6 +7,7 @@ const StateMixin = require('reflux-state-mixin');
 const { promisify } = require('util');
 const { getConnectionTitle, convertConnectionModelToInfo } = require('mongodb-data-service');
 const debug = require('debug')('compass-connect:store');
+const { app } = require('@electron/remote');
 
 const Actions = require('../actions');
 const {
@@ -1022,7 +1023,7 @@ const Store = Reflux.createStore({
      * See https://jira.mongodb.org/browse/COMPASS-4901
      */
     if (typeof connectionModel.appname === 'undefined') {
-      connectionModel.appname = electron.remote.app.getName();
+      connectionModel.appname = app.getName();
     }
 
     let connectionInfo;

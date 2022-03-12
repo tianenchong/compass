@@ -1,7 +1,7 @@
 const AmpersandRouter = require('ampersand-router');
 const React = require('react');
 const ReactDOM = require('react-dom');
-const { remote } = require('electron');
+const { app } = require('@electron/remote');
 
 module.exports = AmpersandRouter.extend({
   routes: {
@@ -13,7 +13,7 @@ module.exports = AmpersandRouter.extend({
       ReactDOM.render(
         React.createElement(this.homeView, {
           appRegistry: global.hadronApp.appRegistry,
-          appName: remote.app.getName()
+          appName: app.getName()
         }),
         global.hadronApp.state.queryByHook('layout-container')
       ));

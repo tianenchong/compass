@@ -1,6 +1,8 @@
 import path from 'path';
 import { EventEmitter } from 'events';
-import { app, BrowserWindow } from 'electron';
+import type { BrowserWindow } from 'electron';
+import { app } from 'electron';
+import * as remoteMain from '@electron/remote/main';
 import { ipcMain } from 'hadron-ipc';
 import createDebug from 'debug';
 import { CompassLogging } from './logging';
@@ -27,6 +29,7 @@ class CompassApplication {
       return;
     }
 
+    this.setupElectronRemote();
     this.setupUserDirectory();
 
     await Promise.all([
@@ -69,6 +72,12 @@ class CompassApplication {
       );
       CompassAutoUpdateManager.init();
     }
+  }
+
+  private static setupElectronRemote(): void {
+    // Initialize from the main electron process the `@electron/remote/main`
+    // package so that the renderer processes can use `@electron/remote`.
+    remoteMain.initialize();
   }
 
   private static setupApplicationMenu(): void {

@@ -1,4 +1,4 @@
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 import Collection from 'ampersand-rest-collection';
 import RecentQuery from './recent-query';
 import storageMixin from 'storage-mixin';
@@ -17,7 +17,7 @@ const RecentQueryCollection = Collection.extend(storageMixin, {
   namespace: 'RecentQueries',
   storage: {
     backend: 'disk',
-    basepath: remote ? remote.app.getPath('userData') : undefined,
+    basepath: app.getPath('userData'),
   },
   mainIndex: '_id',
   comparator: (recent) => {

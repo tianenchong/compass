@@ -1,8 +1,7 @@
 var Model = require('ampersand-model');
 var storageMixin = require('storage-mixin');
 var uuid = require('uuid');
-var electron = require('electron');
-var electronApp = electron.remote ? electron.remote.app : undefined;
+var electronApp = require('@electron/remote').app;
 
 // var debug = require('debug')('scout:user');
 
@@ -11,7 +10,7 @@ var User = Model.extend(storageMixin, {
   namespace: 'Users',
   storage: {
     backend: 'disk',
-    basepath: electronApp ? electronApp.getPath('userData') : undefined
+    basepath: electronApp.getPath('userData')
   },
   props: {
     id: {

@@ -1,12 +1,12 @@
 const Connection = require('./legacy-connection');
 const Collection = require('ampersand-rest-collection');
 const storageMixin = require('storage-mixin');
+const { app } = require('@electron/remote');
 
 let appName;
 
 try {
-  const electron = require('electron');
-  appName = electron.remote ? electron.remote.app.getName() : undefined;
+  appName = app.getName();
 } catch (e) {
   /* eslint no-console: 0 */
   console.log('Could not load electron', e.message);

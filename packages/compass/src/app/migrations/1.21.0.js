@@ -2,7 +2,7 @@ const debug = require('debug')('mongodb-compass:migrations');
 const asyncr = require('async');
 const fs = require('fs');
 const path = require('path');
-const { remote } = require('electron');
+const { app } = require('@electron/remote');
 
 /**
  * The plugin database name.
@@ -56,7 +56,7 @@ const getObjectStore = (mode, done) => {
  */
 const moveToDiskStorage = (done) => {
   debug('migration pipelines: moveToDiskStorage');
-  const userDataDir = remote.app.getPath('userData');
+  const userDataDir = app.getPath('userData');
   getObjectStore('readwrite', (store) => {
     const request = store.getAll();
     request.onsuccess = (evt) => {

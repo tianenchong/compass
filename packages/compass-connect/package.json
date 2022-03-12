@@ -37,6 +37,7 @@
   },
   "license": "SSPL",
   "peerDependencies": {
+    "@electron/remote": "^2.0.7",
     "@mongodb-js/compass-components": "^0.12.0",
     "hadron-ipc": "^2.9.0",
     "hadron-react-buttons": "^5.7.0",
@@ -58,6 +59,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/register": "^7.13.16",
+    "@electron/remote": "^2.0.7",
     "@mongodb-js/compass-components": "^0.12.0",
     "autoprefixer": "^9.4.6",
     "babel-loader": "^8.2.2",

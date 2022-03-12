@@ -1,7 +1,7 @@
 import AppRegistry from 'hadron-app-registry';
 import Connection, { ConnectionCollection } from 'mongodb-connection-model';
 import Reflux from 'reflux';
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 
 import Actions from '../../../src/actions';
 import {
@@ -1857,7 +1857,7 @@ describe('Store', () => {
         expect(connection.appname).to.be.undefined;
         Store.state.currentConnectionAttempt = createConnectionAttempt();
         await Store._connect(connection);
-        expect(connection.appname).to.eq(remote.app.getName());
+        expect(connection.appname).to.eq(app.getName());
       });
 
       it('should preserve appname if set on connection', async() => {

@@ -129,10 +129,8 @@ const configureStore = (options = {}) => {
     },
 
     handleSchemaShare() {
-      const { remote } = require('electron');
-      const clipboard = remote.clipboard;
+      navigator.clipboard.writeText(JSON.stringify(this.state.schema, null, '  '));
 
-      clipboard.writeText(JSON.stringify(this.state.schema, null, '  '));
       ipc.call('app:show-info-dialog', 'Share Schema', this.getShareText());
     },
 

@@ -50,6 +50,7 @@
     "mongodb-data-service": "^21.18.0"
   },
   "peerDependencies": {
+    "@electron/remote": "^2.0.7",
     "bson": "^4.4.1",
     "debug": "*",
     "hadron-react-components": "^5.12.0",
@@ -71,6 +72,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/register": "^7.13.16",
+    "@electron/remote": "^2.0.7",
     "ampersand-model": "^8.0.1",
     "ampersand-rest-collection": "^6.0.0",
     "autoprefixer": "^9.4.6",

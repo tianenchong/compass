@@ -1,7 +1,8 @@
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 import Collection from 'ampersand-rest-collection';
 import FavoriteQuery from './favorite-query';
 import storageMixin from 'storage-mixin';
+
 
 /**
  * Represents a collection of favorite queries.
@@ -17,7 +18,7 @@ const FavoriteQueryCollection = Collection.extend(storageMixin, {
   namespace: 'FavoriteQueries',
   storage: {
     backend: 'disk',
-    basepath: remote ? remote.app.getPath('userData') : undefined,
+    basepath: app.getPath('userData'),
   },
   mainIndex: '_id',
   comparator: (favorite) => {

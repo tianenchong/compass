@@ -10,11 +10,11 @@ let appName;
 let basepath;
 
 try {
-  const electron = require('electron');
+  const remote = require('@electron/remote');
 
-  appName = electron.remote ? electron.remote.app.getName() : undefined;
-  basepath = electron.remote
-    ? electron.remote.app.getPath('userData')
+  appName = remote ? remote.app.getName() : undefined;
+  basepath = remote
+    ? remote.app.getPath('userData')
     : undefined;
 } catch (e) {
   /* eslint no-console: 0 */

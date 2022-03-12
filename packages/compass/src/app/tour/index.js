@@ -3,7 +3,7 @@ const View = require('ampersand-view');
 const app = require('hadron-app');
 const semver = require('semver');
 const _ = require('lodash');
-const electronApp = require('electron').remote.app;
+const { app: electronApp } = require('@electron/remote');
 const { track } = require('@mongodb-js/compass-logging').createLoggerAndTelemetry('COMPASS-TOUR');
 
 // const debug = require('debug')('mongodb-compass:tour:index');
@@ -117,7 +117,7 @@ var TourView = View.extend({
       deps: ['previousVersion'],
       fn: function() {
         return (this.previousVersion === '0.0.0' || process.env.NODE_ENV === 'testing') ?
-          `Welcome to ${electronApp.getName()}` : `What\'s New in ${electronApp.getName()}`;
+          `Welcome to ${electronApp.getName()}` : `What's New in ${electronApp.getName()}`;
       }
     }
   },

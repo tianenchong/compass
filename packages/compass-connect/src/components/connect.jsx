@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from '@mongodb-js/compass-components';
@@ -38,7 +38,7 @@ class Connect extends React.Component {
   };
 
   componentDidMount() {
-    document.title = `${remote.app.getName()} - Connect`;
+    document.title = `${app.getName()} - Connect`;
     track('Screen', { name: 'connect' });
   }
 

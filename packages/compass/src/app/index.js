@@ -1,4 +1,5 @@
 const ipc = require('hadron-ipc');
+const { app: electronRemoteApp } = require('@electron/remote');
 
 // Setup error reporting to main process before anything else.
 window.addEventListener('error', (event) => {
@@ -35,7 +36,7 @@ global.hadronApp = app;
  * The main entrypoint for the application!
  */
 var electron = require('electron');
-var APP_VERSION = electron.remote.app.getVersion();
+var APP_VERSION = electronRemoteApp.getVersion();
 
 var _ = require('lodash');
 var View = require('ampersand-view');

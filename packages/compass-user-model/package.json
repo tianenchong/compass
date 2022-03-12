@@ -30,6 +30,9 @@
     "depcheck": "depcheck",
     "test-ci": "npm run test"
   },
+  "peerDependencies": {
+    "@electron/remote": "^2.0.7"
+  },
   "dependencies": {
     "ampersand-collection-filterable": "^0.3.0",
     "ampersand-model": "^8.0.1",
@@ -45,6 +48,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@electron/remote": "^2.0.7",
     "depcheck": "^1.4.1",
     "electron": "^13.5.1",
     "eslint": "^7.25.0",

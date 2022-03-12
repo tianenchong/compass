@@ -2,7 +2,8 @@ const { THEMES } = require('compass-preferences-model');
 const { Theme } = require('@mongodb-js/compass-components');
 const ipc = require('hadron-ipc');
 const darkreader = require('darkreader');
-const { remote } = require('electron');
+const { nativeTheme } = require('@electron/remote');
+
 const {
   applyGlobalDarkThemeStyles,
   applyGlobalLightThemeStyles,
@@ -42,7 +43,7 @@ function loadTheme(theme) {
   ipc.call('window:theme-loaded', theme);
 
   if (theme === THEMES.OS_THEME
-    && remote.nativeTheme.shouldUseDarkColors
+    && nativeTheme.shouldUseDarkColors
   ) {
     enableDarkTheme();
     return;

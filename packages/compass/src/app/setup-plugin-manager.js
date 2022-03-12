@@ -1,11 +1,11 @@
 const marky = require('marky');
-const electron = require('electron');
 const app = require('hadron-app');
 const pkg = require('../../package.json');
 const path = require('path');
 const { AppRegistry } = require('hadron-app-registry');
 const PluginManager = require('@mongodb-js/hadron-plugin-manager');
 const ipc = require('hadron-ipc');
+const { app: electronRemoteApp } = require('@electron/remote');
 
 const debug = require('debug')('mongodb-compass:setup-plugin-manager');
 
@@ -36,7 +36,7 @@ const PLUGINS_DIR = 'plugins-directory';
  * Location of the dev plugins.
  */
 const DEV_PLUGINS = path.join(
-  electron.remote.app.getPath('home'),
+  electronRemoteApp.getPath('home'),
   DISTRIBUTION[PLUGINS_DIR]
 );
 

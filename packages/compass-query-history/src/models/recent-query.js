@@ -1,4 +1,4 @@
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 import Query from './query';
 import storageMixin from 'storage-mixin';
 
@@ -10,7 +10,7 @@ const RecentQuery = Query.extend(storageMixin, {
   namespace: 'RecentQueries',
   storage: {
     backend: 'disk',
-    basepath: remote ? remote.app.getPath('userData') : undefined,
+    basepath: app.getPath('userData')
   }
 });
 

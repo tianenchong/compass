@@ -1,13 +1,7 @@
-const { remote } = require('electron');
+const { app } = require('@electron/remote');
 const path = require('path');
 
 export function getUserDataFilePath(filename) {
-  if (!remote) {
-    return;
-  }
-
-  const app = remote.app;
-
   if (!app) {
     return;
   }

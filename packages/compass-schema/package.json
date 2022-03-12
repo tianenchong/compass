@@ -29,6 +29,7 @@
   },
   "license": "SSPL",
   "peerDependencies": {
+    "@electron/remote": "^2.0.7",
     "@mongodb-js/compass-components": "^0.12.0",
     "@mongodb-js/compass-query-bar": "^7.19.0",
     "bson": "*",
@@ -55,6 +56,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/register": "^7.13.16",
+    "@electron/remote": "^2.0.7",
     "@mongodb-js/compass-components": "^0.12.0",
     "@mongodb-js/compass-query-bar": "^7.19.0",
     "autoprefixer": "^9.4.6",

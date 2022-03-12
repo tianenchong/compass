@@ -8,8 +8,8 @@ import ReactDOM from 'react-dom';
 import app from 'hadron-app';
 import AppRegistry from 'hadron-app-registry';
 import { AppContainer } from 'react-hot-loader';
+import { getCurrentWebContents } from '@electron/remote';
 import AutoUpdatesPlugin, { activate } from '../../src/index.js';
-import { remote } from 'electron';
 
 const appRegistry = new AppRegistry();
 
@@ -49,7 +49,7 @@ const render = Component => {
 // Render our plugin - don't remove the following line.
 render(AutoUpdatesPlugin);
 
-remote.getCurrentWebContents().send('app:update-available', {
+getCurrentWebContents().send('app:update-available', {
   releaseVersion: '1.19.0'
 });
 
