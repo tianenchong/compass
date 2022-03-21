@@ -9,21 +9,10 @@ const isString = require('lodash.isstring');
 const ObjectGenerator = require('./object-generator');
 const TypeChecker = require('hadron-type-checker');
 const uuid = require('uuid');
+const DateEditor = require('./editor/date');
+const Events = require('./element-events');
 
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
-
-/**
- * The event constant.
- */
-const Events = {
-  'Added': 'Element::Added',
-  'Edited': 'Element::Edited',
-  'Removed': 'Element::Removed',
-  'Reverted': 'Element::Reverted',
-  'Converted': 'Element::Converted',
-  'Invalid': 'Element::Invalid',
-  'Valid': 'Element::Valid'
-};
 
 /**
  * Id field constant.
@@ -114,6 +103,7 @@ class Element extends EventEmitter {
     this.removed = false;
     this.type = TypeChecker.type(value);
     this.currentType = this.type;
+    this.level = this._getLevel();
     this.setValid();
 
     if (this._isExpandable(value)) {
@@ -123,6 +113,16 @@ class Element extends EventEmitter {
       this.value = value;
       this.currentValue = value;
     }
+  }
+
+  _getLevel() {
+    let level = -1;
+    let parent = this.parent;
+    while (parent) {
+      level++;
+      parent = parent.parent;
+    }
+    return level;
   }
 
   /**
@@ -143,6 +143,39 @@ class Element extends EventEmitter {
     }
     this.setValid();
     this._bubbleUp(Events.Edited);
+  }
+
+  /**
+   * @param {import('hadron-type-checker').TypeCastTypes} newType
+   */
+  changeType(newType) {
+    if (newType === 'Object') {
+      this.edit('{');
+      this.next();
+    } else if (newType === 'Array') {
+      this.edit('[');
+      this.next();
+    } else {
+      try {
+        if (newType === 'Date') {
+          const editor = new DateEditor(this);
+          editor.edit(this.generateObject());
+          editor.complete();
+        } else {
+          this.edit(TypeChecker.cast(this.generateObject(), newType));
+        }
+      } catch (e) {
+        this.setInvalid(this.currentValue, newType, e.message);
+      }
+    }
+  }
+
+  getRoot() {
+    let parent = this.parent;
+    while (parent.parent) {
+      parent = parent.parent;
+    }
+    return parent;
   }
 
   /**
@@ -222,11 +255,15 @@ class Element extends EventEmitter {
    */
   generateOriginalObject() {
     if (this.type === 'Array') {
-      const originalElements = this._generateElements(this.originalExpandableValue);
+      const originalElements = this._generateElements(
+        this.originalExpandableValue
+      );
       return ObjectGenerator.generateOriginalArray(originalElements);
     }
     if (this.type === 'Object') {
-      const originalElements = this._generateElements(this.originalExpandableValue);
+      const originalElements = this._generateElements(
+        this.originalExpandableValue
+      );
       return ObjectGenerator.generateOriginal(originalElements);
     }
 
@@ -292,6 +329,10 @@ class Element extends EventEmitter {
     var newElement = this.elements.insertEnd('', '', true, this);
     this._bubbleUp(Events.Added);
     return newElement;
+  }
+
+  insertSiblingPlaceholder() {
+    return this.parent.insertAfter(this, '', '');
   }
 
   /**
@@ -372,10 +413,12 @@ class Element extends EventEmitter {
    * @returns {Boolean} If the element is edited.
    */
   isEdited() {
-    return (this.isRenamed() ||
-      !this._valuesEqual() ||
-      this.type !== this.currentType) &&
-      !this.isAdded();
+    return (
+      (this.isRenamed() ||
+        !this._valuesEqual() ||
+        this.type !== this.currentType) &&
+      !this.isAdded()
+    );
   }
 
   /**
@@ -416,8 +459,12 @@ class Element extends EventEmitter {
    */
   isRenamed() {
     let keyChanged = false;
-    if (!this.parent || this.parent.isRoot() || this.parent.currentType === 'Object') {
-      keyChanged = (this.key !== this.currentKey);
+    if (
+      !this.parent ||
+      this.parent.isRoot() ||
+      this.parent.currentType === 'Object'
+    ) {
+      keyChanged = this.key !== this.currentKey;
     }
 
     return keyChanged;
@@ -477,7 +524,9 @@ class Element extends EventEmitter {
    * @returns {Boolean} If the key is editable.
    */
   isKeyEditable() {
-    return this.isParentEditable() && (this.isAdded() || (this.currentKey !== ID));
+    return (
+      this.isParentEditable() && (this.isAdded() || this.currentKey !== ID)
+    );
   }
 
   /**
@@ -637,7 +686,10 @@ class Element extends EventEmitter {
    * Add a new element to the parent.
    */
   _next() {
-    if (!this._isElementEmpty(this.nextElement) && !this._isElementEmpty(this)) {
+    if (
+      !this._isElementEmpty(this.nextElement) &&
+      !this._isElementEmpty(this)
+    ) {
       this.parent.insertAfter(this, '', '');
     }
   }
@@ -696,7 +748,7 @@ class LinkedList {
     this.originalDoc = originalDoc;
     this.keys = keys(this.originalDoc);
     if (this.doc.currentType === 'Array') {
-      this.keys = this.keys.map(k => parseInt(k, 10));
+      this.keys = this.keys.map((k) => parseInt(k, 10));
     }
     this.size = this.keys.length;
     this.loaded = 0;
@@ -850,12 +902,14 @@ class LinkedList {
   }
 
   _needsLazyLoad(index) {
-    return (index === 0 && this.loaded === 0 && this.size > 0) ||
-      (this.loaded <= index && index < this.size);
+    return (
+      (index === 0 && this.loaded === 0 && this.size > 0) ||
+      (this.loaded <= index && index < this.size)
+    );
   }
 
   _needsStandardIteration(index) {
-    return (this.loaded > 0 && index < this.loaded && index < this.size);
+    return this.loaded > 0 && index < this.loaded && index < this.size;
   }
 
   /**
@@ -867,7 +921,12 @@ class LinkedList {
    */
   _lazyInsertEnd(key) {
     this.size -= 1;
-    return this._insertEnd(key, this.originalDoc[key], this.doc.cloned, this.doc);
+    return this._insertEnd(
+      key,
+      this.originalDoc[key],
+      this.doc.cloned,
+      this.doc
+    );
   }
 
   _insertEnd(key, value, added, parent) {
@@ -878,7 +937,14 @@ class LinkedList {
   }
 
   _insertBefore(element, key, value, added, parent) {
-    var newElement = new Element(key, value, added, parent, element.previousElement, element);
+    var newElement = new Element(
+      key,
+      value,
+      added,
+      parent,
+      element.previousElement,
+      element
+    );
     if (element.previousElement) {
       element.previousElement.nextElement = newElement;
     } else {
@@ -900,13 +966,26 @@ class LinkedList {
       this._map[element.key] = element;
       return element;
     }
-    const newElement = this.insertBefore(this.firstElement, key, value, added, parent);
+    const newElement = this.insertBefore(
+      this.firstElement,
+      key,
+      value,
+      added,
+      parent
+    );
     this._map[newElement.key] = newElement;
     return newElement;
   }
 
   _insertAfter(element, key, value, added, parent) {
-    var newElement = new Element(key, value, added, parent, element, element.nextElement);
+    var newElement = new Element(
+      key,
+      value,
+      added,
+      parent,
+      element,
+      element.nextElement
+    );
     if (element.nextElement) {
       element.nextElement.previousElement = newElement;
     } else {
@@ -944,9 +1023,21 @@ class LinkedList {
     this.loaded -= 1;
     return this;
   }
+
+  findIndex(el) {
+    let idx = 0;
+    for (const item of this) {
+      if (item === el) {
+        return idx;
+      }
+      idx++;
+    }
+    return -1;
+  }
 }
 
+Element.LinkedList = LinkedList;
+Element.Events = Events;
+Element.DATE_FORMAT = DATE_FORMAT;
+
 module.exports = Element;
-module.exports.LinkedList = LinkedList;
-module.exports.Events = Events;
-module.exports.DATE_FORMAT = DATE_FORMAT;

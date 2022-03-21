@@ -95,7 +95,11 @@ export const DateValue: React.FunctionComponent<PropsByValueType<'Date'>> = ({
   value,
 }) => {
   const stringifiedValue = useMemo(() => {
-    return new Date(value).toISOString().replace('Z', '+00:00');
+    try {
+      return new Date(value).toISOString().replace('Z', '+00:00');
+    } catch {
+      return String(value);
+    }
   }, [value]);
 
   return (

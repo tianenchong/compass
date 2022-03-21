@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EditableDocument from './editable-document';
 import ReadonlyDocument from './readonly-document';
+import { DocumentList } from '@mongodb-js/compass-components';
 
 /**
  * Component for a single document in a list of documents.
@@ -54,4 +55,6 @@ Document.propTypes = {
   openInsertDocumentDialog: PropTypes.func
 };
 
-export default Document;
+DocumentList.Document.OldDocument = Document;
+
+export default DocumentList.Document;

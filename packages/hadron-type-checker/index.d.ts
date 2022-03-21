@@ -37,7 +37,7 @@ export type TypeCastMap = {
   Undefined: undefined;
 };
 
-export type TypeCastTypes = keyof TypeCastMap;
+export type TypeCastTypes = Extract<keyof TypeCastMap, string>;
 
 declare class TypeChecker {
   cast<O = unknown, T extends string = string>(
@@ -45,7 +45,10 @@ declare class TypeChecker {
     type: T
   ): T extends TypeCastTypes ? TypeCastMap[T] : O;
   type(object: unknown): TypeCastTypes;
-  castableTypes(highPrecisionSupport?: boolean): TypeCastTypes;
+  castableTypes(highPrecisionSupport?: boolean): TypeCastTypes[];
 }
 
-export default TypeChecker;
+const typeCheckerInstance: TypeChecker;
+
+export default typeCheckerInstance;
+export = typeCheckerInstance;

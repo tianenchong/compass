@@ -25,10 +25,9 @@ class InputPreview extends Component {
   render() {
     const documents = this.props.documents.map((doc, i) => {
       return (
-        <Document
+        <Document.OldDocument
           doc={new HadronDocument(doc)}
           editable={false}
-          tz="UTC"
           key={i} />);
     });
     return (

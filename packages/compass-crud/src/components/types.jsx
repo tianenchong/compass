@@ -65,26 +65,7 @@ class Types extends React.Component {
    */
   handleTypeChange(evt) {
     const newType = evt.target.innerText || evt.target.textContent;
-    if (newType === OBJECT) {
-      this.element.edit('{');
-      this.element.next();
-    } else if (newType === ARRAY) {
-      this.element.edit('[');
-      this.element.next();
-    } else {
-      try {
-        if (newType === 'Date') {
-          const editor = new DateEditor(this.element);
-          editor.edit(this.castableValue());
-          editor.complete();
-        } else {
-          const value = TypeChecker.cast(this.castableValue(), newType);
-          this.element.edit(value);
-        }
-      } catch (e) {
-        this.element.setInvalid(this.element.currentValue, newType, e.message);
-      }
-    }
+    this.element.changeType(newType);
   }
 
   /**

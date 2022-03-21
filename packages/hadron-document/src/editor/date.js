@@ -1,5 +1,5 @@
 const TypeChecker = require('hadron-type-checker');
-const Element = require('../element');
+const Events = require('../element-events');
 const { fieldStringLen } = require('../utils');
 const StandardEditor = require('./standard');
 
@@ -35,11 +35,15 @@ class DateEditor extends StandardEditor {
     try {
       const date = TypeChecker.cast(value, 'Date');
       if (date.toString() === 'Invalid Date') {
-        this.element.setInvalid(value, 'Date', `${value} is not in a valid date format`);
+        this.element.setInvalid(
+          value,
+          'Date',
+          `${value} is not in a valid date format`
+        );
       } else {
         this.element.currentValue = value;
         this.element.setValid();
-        this.element._bubbleUp(Element.Events.Edited);
+        this.element._bubbleUp(Events.Edited);
       }
     } catch (e) {
       this.element.setInvalid(value, this.element.currentType, e.message);
@@ -58,7 +62,9 @@ class DateEditor extends StandardEditor {
     if (editMode) {
       return fieldStringLen(value);
     }
-    return this.element.isCurrentTypeValid() ? fieldStringLen(this._formattedValue()) : fieldStringLen(value);
+    return this.element.isCurrentTypeValid()
+      ? fieldStringLen(this._formattedValue())
+      : fieldStringLen(value);
   }
 
   /**
@@ -88,7 +94,9 @@ class DateEditor extends StandardEditor {
   }
 
   _formattedValue() {
-    return new Date(this.element.currentValue).toISOString().replace('Z', '+00:00');
+    return new Date(this.element.currentValue)
+      .toISOString()
+      .replace('Z', '+00:00');
   }
 }
 

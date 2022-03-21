@@ -33,7 +33,7 @@ declare class LinkedList<T> {
   remove(el: T): this;
 }
 
-declare type HadronElementEvents = {
+declare const HadronElementEvents: {
   Added: 'Element::Added';
   Edited: 'Element::Edited';
   Removed: 'Element::Removed';
@@ -55,6 +55,7 @@ declare class HadronElement extends EventEmitter {
   uuid: string;
   key: string;
   currentKey: string;
+
   parent: HadronDocument | HadronElement;
   previousElement: HadronElement | null;
   nextElement: HadronElement | null;
@@ -62,13 +63,15 @@ declare class HadronElement extends EventEmitter {
   removed: boolean;
   type: TypeCastTypes;
   currentType: TypeCastTypes;
-  elements?: HadronElement;
+  elements?: LinkedList<HadronElement>;
   originalExpandableValue?: TypeCastMap[typeof this.type];
   value?: TypeCastMap[typeof this.type];
   currentValue: TypeCastMap[typeof this.type];
+  level: number;
   bulkEdit(value: string): void;
   cancel(): void;
   edit(value: unknown): void;
+  changeType(newType: TypeCastTypes): void;
   get(key: string): Element | undefined;
   at(i: number): Element | undefined;
   next(): Element;
@@ -78,6 +81,7 @@ declare class HadronElement extends EventEmitter {
   insertAfter(element: Element, key: string, value: unknown): Element;
   insertEnd(key: string, value: unknown): Element;
   insertPlaceholder(): Element;
+  insertSiblingPlaceholder(): Element;
   isAdded(): boolean;
   isBlank(): boolean;
   isCurrentTypeValid(): boolean;
@@ -98,15 +102,16 @@ declare class HadronElement extends EventEmitter {
   isRoot(): false;
   remove(): void;
   revert(): void;
-  static Events: HadronElementEvents;
+  static Events: typeof HadronElementEvents;
 }
 
-declare type HadronDocumentEvents = {
+declare const HadronDocumentEvents: {
   Cancel: 'Document::Cancel';
 };
 
 declare class HadronDocument extends EventEmitter {
   constructor(doc: unknown, cloned: boolean);
+  type: 'Document';
   elements: LinkedList<HadronElement>;
   cancel(): void;
   generateObject(): unknown;
@@ -136,11 +141,12 @@ declare class HadronDocument extends EventEmitter {
   isRemoved(): false;
   isRoot(): true;
   next(): void;
-  static Events: HadronDocumentEvents;
+  static Events: typeof HadronDocumentEvents;
 }
 
-declare class Editor {
+export declare class Editor {
   constructor(element: HadronElement);
+  element: HadronElement;
   edit(value: unknown): void;
   paste(value: string): void;
   size(): number;
@@ -149,7 +155,7 @@ declare class Editor {
   complete(): void;
 }
 
-declare interface ElementEditor {
+declare const ElementEditor: {
   (element: HadronElement): {
     Standard: Editor;
     String: Editor;
@@ -172,7 +178,7 @@ declare interface ElementEditor {
   NullEditor: typeof Editor;
   UndefinedEditor: typeof Editor;
   ObjectIdEditor: typeof Editor;
-}
+};
 
 export default HadronDocument;
 export { HadronDocumentEvents as DocumentEvents };

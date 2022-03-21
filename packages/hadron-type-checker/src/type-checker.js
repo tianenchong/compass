@@ -253,7 +253,7 @@ const CASTERS = {
   BSONRegExp: toRegex,
   String: toString,
   BSONSymbol: toSymbol,
-  BSONMap: toMap,
+  // BSONMap: toMap,
   Timestamp: toTimestamp,
   Undefined: toUndefined
 };

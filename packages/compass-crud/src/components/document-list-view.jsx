@@ -29,23 +29,66 @@ class DocumentListView extends React.Component {
    * @return {Array} The document list item components.
    */
   renderDocuments() {
-    return this.props.docs.map((doc, i) => {
+    return this.props.docs.map((doc) => {
+      // return (
+      //   <li className={LIST_ITEM_CLASS} data-test-id={LIST_ITEM_TEST_ID} key={doc.getStringId()}>
+      //     <Document.OldDocument
+      //       doc={doc}
+      //       tz={this.props.tz}
+      //       key={doc.getStringId()}
+      //       editable={this.props.isEditable}
+      //       isTimeSeries={this.props.isTimeSeries}
+      //       version={this.props.version}
+      //       copyToClipboard={this.props.copyToClipboard}
+      //       removeDocument={this.props.removeDocument}
+      //       replaceDocument={this.props.replaceDocument}
+      //       updateDocument={this.props.updateDocument}
+      //       openImportFileDialog={this.props.openImportFileDialog}
+      //       openInsertDocumentDialog={this.props.openInsertDocumentDialog}
+      //     />
+      //   </li>
+      // );
       return (
-        <li className={LIST_ITEM_CLASS} data-test-id={LIST_ITEM_TEST_ID} key={i}>
+        <li data-test-id={LIST_ITEM_TEST_ID} key={doc.getStringId()}>
           <Document
-            doc={doc}
-            tz={this.props.tz}
-            key={i}
-            editable={this.props.isEditable}
-            isTimeSeries={this.props.isTimeSeries}
-            version={this.props.version}
-            copyToClipboard={this.props.copyToClipboard}
-            removeDocument={this.props.removeDocument}
-            replaceDocument={this.props.replaceDocument}
-            updateDocument={this.props.updateDocument}
-            openImportFileDialog={this.props.openImportFileDialog}
-            openInsertDocumentDialog={this.props.openInsertDocumentDialog}
+            value={doc}
+            key={doc.getStringId() + '1111'}
+            // null | 'success' | 'error' | 'blocked'
+            // updateStatus={''}
+            // tz={this.props.tz}
+            // editable={this.props.isEditable}
+            // isTimeSeries={this.props.isTimeSeries}
+            // Only needed for castableTypes, can be always true
+            // version={this.props.version}
+            onCopy={this.props.copyToClipboard}
+            onClone={this.props.openInsertDocumentDialog}
+            // copyToClipboard={this.props.copyToClipboard}
+            // TODO: This needs to be adjusted probably
+            onRemove={this.props.removeDocument}
+            // removeDocument={this.props.removeDocument}
+            // onReplace={this.props.replaceDocument}
+            // replaceDocument={this.props.replaceDocument}
+            // TODO: This shound handle replace or update on it's own, this
+            // should not be part of the component interface
+            onUpdate={this.props.updateDocument}
+            // updateDocument={this.props.updateDocument}
           />
+          <div className={LIST_ITEM_CLASS}>
+            <Document.OldDocument
+              doc={doc}
+              tz={this.props.tz}
+              key={doc.getStringId()}
+              editable={this.props.isEditable}
+              isTimeSeries={this.props.isTimeSeries}
+              version={this.props.version}
+              copyToClipboard={this.props.copyToClipboard}
+              removeDocument={this.props.removeDocument}
+              replaceDocument={this.props.replaceDocument}
+              updateDocument={this.props.updateDocument}
+              openImportFileDialog={this.props.openImportFileDialog}
+              openInsertDocumentDialog={this.props.openInsertDocumentDialog}
+            />
+          </div>
         </li>
       );
     });

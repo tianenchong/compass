@@ -43,6 +43,7 @@ class Document extends EventEmitter {
     this.cloned = cloned || false;
     this.isUpdatable = true;
     this.elements = this._generateElements();
+    this.type = 'Document';
   }
 
   /**
