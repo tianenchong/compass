@@ -440,12 +440,12 @@ class Target {
 
     // this.resources = OSX_RESOURCES;
     const OSX_DOT_APP = this.dest(
-      `${this.productName}-darwin-x64`,
+      `${this.productName}-darwin-arm64`,
       `${this.productName}.app`
     );
     this.appPath = OSX_DOT_APP;
     this.resources = this.dest(
-      `${this.productName}-darwin-x64`,
+      `${this.productName}-darwin-arm64`,
       `${this.productName}.app`,
       'Contents',
       'Resources'
@@ -486,7 +486,7 @@ class Target {
       identity_display: platformSettings.codesign_identity,
       identity: platformSettings.codesign_sha1,
       appPath: this.dest(
-        `${this.productName}-darwin-x64`,
+        `${this.productName}-darwin-arm64`,
         `${this.productName}.app`
       ),
       /**
@@ -517,7 +517,7 @@ class Target {
           y: 243,
           type: 'file',
           path: this.dest(
-            `${this.productName}-darwin-x64`,
+            `${this.productName}-darwin-arm64`,
             `${this.productName}.app`
           )
         }
@@ -550,7 +550,7 @@ class Target {
           process.env.MACOS_NOTARY_API_URL) {
         const appDirectoryName = `${this.productName}.app`;
         const appPath = this.dest(
-          `${this.productName}-darwin-x64`,
+          `${this.productName}-darwin-arm64`,
           appDirectoryName
         );
         debug(`Signing and notarizing "${appPath}"`);
@@ -745,7 +745,7 @@ class Target {
    * @return {null|Asset}
    * @example
    * target.getAssetWithExtension('.zip')
-   * >>> {name: 'hadron-app-darwin-x64.zip', path:...}
+   * >>> {name: 'hadron-app-darwin-arm64.zip', path:...}
    * target.getAssetWithExtension('.k7z')
    * >>> null
    */

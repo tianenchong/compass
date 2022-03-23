@@ -88,8 +88,8 @@ const symlinkExecutable = (CONFIG, done) => {
   if (CONFIG.platform === 'darwin') {
     cli.debug('Ensuring `Contents/MacOS/Electron` is symlinked');
     const cwd = process.cwd();
-    cli.debug('chdir', CONFIG.dest(`${CONFIG.productName}-darwin-x64`, 'Contents', 'MacOS'));
-    process.chdir(CONFIG.dest(`${CONFIG.productName}-darwin-x64`, `${CONFIG.productName}.app`, 'Contents', 'MacOS'));
+    cli.debug('chdir', CONFIG.dest(`${CONFIG.productName}-darwin-arm64`, 'Contents', 'MacOS'));
+    process.chdir(CONFIG.dest(`${CONFIG.productName}-darwin-arm64`, `${CONFIG.productName}.app`, 'Contents', 'MacOS'));
 
     fs.ensureSymlink(CONFIG.productName, 'Electron', function(_err) {
       process.chdir(cwd);

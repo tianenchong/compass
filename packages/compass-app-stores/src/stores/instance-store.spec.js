@@ -15,7 +15,7 @@ describe('InstanceStore [Store]', () => {
   });
 
   function createDataService(
-    instanceInfo = { build: { version: '1.2.3' }, host: { arch: 'x64' } }
+    instanceInfo = { build: { version: '1.2.3' }, host: { arch: 'arm64' } }
   ) {
     return {
       getConnectionString() {

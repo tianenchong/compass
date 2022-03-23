@@ -63,7 +63,7 @@
     "wait-on": "^5.3.0"
   },
   "engines": {
-    "node": ">=14.17.5",
+    "node": ">=16.14.1",
     "npm": ">=7.16.0"
   },
   "bugs": {
@@ -74,5 +74,8 @@
     "packages/*",
     "configs/*",
     "scripts"
-  ]
+  ],
+  "dependencies": {
+    "electron-packager": "^15.4.0"
+  }
 }
